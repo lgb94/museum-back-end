@@ -1,17 +1,17 @@
 module.exports = [
     {
-        title: "Sculpture of the Ancient World",
-        description: "A collection showcasing sculptures from various ancient cultures.",
+        title: "Stuff I like",
+        description: "A couple of things i think look real cool.",
         curator_id: 1,
     },
     {
-        title: "Modern Art in Focus",
-        description: "Exploring the innovations in modern art through various artists.",
+        title: "Cool calm and collected",
+        description: "Exploring the innovations in sculpture through various forms and figures.",
         curator_id: 1,
     },
     {
-        title: "Nature's Masterpieces",
-        description: "An exhibit dedicated to natural history and its artistic representation.",
+        title: "thats hot",
+        description: "these are sick dude for real",
         curator_id: 2,
     },
 ];

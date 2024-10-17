@@ -31,7 +31,7 @@ const seed = ({userData, objectData, exhibitData, exhibitObjectData}) => {
                     period VARCHAR(100),
                     object_begin_date INT,
                     object_end_date INT,
-                    medium VARCHAR(100),
+                    medium VARCHAR(350),
                     classification VARCHAR(100),
                     primary_image VARCHAR(255),
                     object_url VARCHAR(255) NOT NULL,
