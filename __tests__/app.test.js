@@ -101,6 +101,42 @@ describe("GET /api/users/email/:email", () => {
   });
 });
 
+describe("POST /api/users/login", () => {
+  test('GET /api/users/login with valid credentials sent on the request body responds with a status 200 and that users information on a key of "user".', () => {
+    return request(app)
+      .post("/api/users/login")
+      .send({
+        email: 'user001@email.com',
+        password: 'password123'
+      })
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toEqual({
+          user: expect.any(Object),
+        });
+        const user = body.user;
+        expect(user).toMatchObject({
+          username: "user001",
+          email: "user001@email.com",
+          password: expect.any(String),
+        });
+      });
+  });
+  test('GET /api/users/login with INVALID credentials sent on the request body (wrong password) responds with a status 401 and error message "wrong email/password".', () => {
+    return request(app)
+      .post("/api/users/login")
+      .send({
+        email: 'user001@email.com',
+        password: 'password23'
+      })
+      .expect(401)
+      .then(({ body }) => {
+        const errorMessage = body.msg
+        expect(errorMessage).toBe('wrong email/password')
+      });
+  });
+});
+
 describe("GET /api/users/username/:username", () => {
   test('GET /api/users/username/user005 (a valid username) gives status 200: sends back an object with key "user", value of an object reflecting user with given ID', () => {
     return request(app)

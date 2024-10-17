@@ -47,6 +47,24 @@
     },
     "requestBodyFormat": {}
   },
+  "POST /api/users/login": {
+    "description": "Takes a request body for an email and password and responds with user information on key 'user' if email and password match that of user in DB. Password is hashed in database - request takes unhashed password.",
+    "Queries": [],
+    "exampleResponse": {
+      "user": [
+        {
+          "user_id": 1,
+          "username": "username001",
+          "email": "username001@email.com",
+          "password": "039809230r9j203mrdfm023rkmwofmq0mq03kfrgsdfgsq"
+        }
+      ]
+    },
+    "requestBodyFormat": {
+      "email" : "username001@email.com",
+      "password" : "password123"
+    }
+  },
   "GET /api/users/username/:username": {
     "description": "Searches the database for a given username and returns user info in case of a match",
     "Queries": [],

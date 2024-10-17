@@ -1,4 +1,5 @@
 const { fetchAllUsers, fetchUserById, fetchUserByUsername, fetchUserByEmail, postNewUser, patchUserWithId, deleteUserById } = require(`${__dirname}/../models/users-model`)
+const bcrypt = require("bcrypt")
 
 // get ALL users request
 
@@ -47,6 +48,23 @@ exports.getUserByEmail = (req, res, next) => {
     })
 }
 
+// verify a user / login request - uses users email and password and checks them against stored data.
+
+exports.verifyUser = (req, res, next) => {
+    const submittedDetails = req.body
+    fetchUserByEmail(submittedDetails.email).then((user) => {
+        bcrypt.compare(submittedDetails.password, user.password).then((isMatch) => {
+            if (!isMatch) {
+                return res.status(401).send({ msg: 'wrong email/password' });
+            }
+            res.status(200).send({user});
+        });
+    })
+    .catch((err) => {
+        next(err)
+    })    
+}
+
 // post a new user request
 
 exports.postUser = (req, res, next) => {
@@ -58,6 +76,7 @@ exports.postUser = (req, res, next) => {
         next(err)
     })
 }
+
 
 // patch an existing user request - change username, email, password 
 

@@ -1,7 +1,7 @@
 const express = require('express')
 const usersRouter = express.Router();
 
-const { getUsers, getUserById, getUserByEmail, getUserByUsername, postUser, patchUser, deleteUser } = require(`${__dirname}/../controllers/users-controller`);
+const { getUsers, getUserById, getUserByEmail, getUserByUsername, postUser, verifyUser, patchUser, deleteUser } = require(`${__dirname}/../controllers/users-controller`);
 
 //requests for object containing array of ALL users
 
@@ -18,6 +18,10 @@ usersRouter.get('/email/:email', getUserByEmail )
 // request to ADD a new user to users table, should they not already exist.
 
 usersRouter.post('/', postUser);
+
+//request to verify a users credentials - used to login but could also be used for verification (?)
+
+usersRouter.post('/login', verifyUser);
 
 // request to PATCH an existing user VIA user_id - changing an existing users information according to given body (if possible).
 
