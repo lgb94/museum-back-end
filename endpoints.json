@@ -2,7 +2,7 @@
   "GET /api": {
     "description": "Gives a JSON representation of available endpoints"
   },
-  "GET /users": {
+  "GET /api/users": {
     "description": "Gives an array of all users currently stored in Database",
     "Queries": [],
     "exampleResponse": {
@@ -17,7 +17,7 @@
     },
     "requestBodyFormat": {}
   },
-  "GET /users/:user_id": {
+  "GET /api/users/:user_id": {
     "description": "Searches the database for a given user id and returns user info in case of a match",
     "Queries": [],
     "exampleResponse": {
@@ -32,7 +32,7 @@
     },
     "requestBodyFormat": {}
   },
-  "GET /users/email/:email": {
+  "GET /api/users/email/:email": {
     "description": "Searches the database for a given email and returns user info in case of a match",
     "Queries": [],
     "exampleResponse": {
@@ -47,7 +47,7 @@
     },
     "requestBodyFormat": {}
   },
-  "GET /users/username/:username": {
+  "GET /api/users/username/:username": {
     "description": "Searches the database for a given username and returns user info in case of a match",
     "Queries": [],
     "exampleResponse": {
@@ -62,7 +62,7 @@
     },
     "requestBodyFormat": {}
   },
-  "POST /users": {
+  "POST /api/users": {
     "description": "Adds a new user to the database given the necessary request body info - encrypts password on entry. Returns that new user database entry on a key 'user'.",
     "Queries": [],
     "exampleResponse": {
@@ -81,7 +81,7 @@
       "password": "password1000"
     }
   },
-  "PATCH /users/:user_id": {
+  "PATCH /api/users/:user_id": {
     "description": "Patches user information for given Id to update username, email or password with new info in database. Request body requires one AND ONLY ONE of the following keys - new_username, new_email, new_password. Passwords are hashed before storing. Returns that updated users information on a key 'user'",
     "Queries": [],
     "exampleResponse": {
@@ -98,13 +98,13 @@
       "new_username": "RandyJackson"
     }
   },
-  "DELETE /users/:user_id": {
+  "DELETE /api/users/:user_id": {
     "description": "Deletes users database entry with given user_id - responds with empty object signalling successful removal. ",
     "Queries": [],
     "exampleResponse": {},
     "requestBodyFormat": {}
   },
-  "GET /objects": {
+  "GET /api/objects": {
     "description": "Gives an array of ALL objects stored in the database, taken and collated from museum apis. Takes queries to the request url for each row of objects information - for example: /objects?culture=Greek. Can take multiple queries at one time - for example: /objects?culture=greek&classification=Sculpture. Queries for rows with numerical values can take an operator value for further refining (<,>) - for example /objects?object_begin_date=0&object_being_date_operator=< searches for objects with a begin date less than 0. Operator queries without queries to respective rows will have no effect. Results are paginated for large amount of data being available to request, with default values if left unspecified. Responds with multiple keys of information on a key of 'results': 'objects' - returned object information array, 'totalRecords' - the total amount of results for request, 'totalPages' - the number of pages the request results are paginated into, 'currentPage' - the results page requested, 'limit' - the limit on the amount of results per page. By default, results are sorted by object_id in ascending order (order direction requires a specified sortBy value, and must be given in lowercase - for example 'sortBy=object_begin_date&sortOrder=desc'",
     "Queries": [
       "title",
@@ -147,7 +147,7 @@
     },
     "requestBodyFormat": {}
   },
-  "GET /exhibits/": {
+  "GET /api/exhibits/": {
     "description": "Returns database entries for ALL usermade exhibits. On a key of 'exhibits' will be an array of objects with information for each exhibit. May have to be paginated in future if amount of user-made exhibits grows large - example imagines there to be only one user made exhibit.",
     "Queries": [],
     "exampleResponse": {
@@ -165,7 +165,7 @@
     },
     "requestBodyFormat": {}
   },
-  "GET /exhibits/:exhibit_id": {
+  "GET /api/exhibits/:exhibit_id": {
     "description": "Returns database entries for usermade exhibit matching given exhibit_id. Information returned on a key of 'exhibit'.",
     "Queries": [],
     "exampleResponse": {
@@ -183,7 +183,7 @@
     },
     "requestBodyFormat": {}
   },
-  "GET /exhibits/user/:user_id": {
+  "GET /api/exhibits/user/:user_id": {
     "description": "Returns database entries for usermade exhibits matching given user_id. This user_id is reflected in results as 'curator_id' field, with username matching id given as 'curator_username' Information returned on a key of 'exhibits'.",
     "Queries": [],
     "exampleResponse": {
@@ -210,7 +210,7 @@
     },
     "requestBodyFormat": {}
   },
-  "POST /exhibits": {
+  "POST /api/exhibits": {
     "description": "Posts a new user-made exhibit given a title, description and user_id on request body - title and description will be given default values for empty key values. Responds with newly created exhibit object on key 'exhibit'",
     "Queries": [],
     "exampleResponse": {
@@ -229,7 +229,7 @@
       "user_id": 3
     }
   },
-  "PATCH /exhibits/:exhibit_id": {
+  "PATCH /api/exhibits/:exhibit_id": {
     "description": "Patches a user made exhibit according to exhibit_id given in request, requires user_id for verification in request body. Request body takes keys 'new_title', 'new_description' - can accept one or both at once. Returns updated exhibit entry on success.",
     "Queries": [],
     "exampleResponse": {
@@ -248,13 +248,13 @@
       "user_id": 3
     }
   },
-  "DELETE /exhibits/:exhibit_id": {
+  "DELETE /api/exhibits/:exhibit_id": {
     "description": "Deletes user-made exhibit with given exhibit_id - responds with empty object upon success.",
     "Queries": [],
     "exampleResponse": {},
     "requestBodyFormat": {}
   },
-  "GET /exhibitobjects/:exhibit_id": {
+  "GET /api/exhibitobjects/:exhibit_id": {
     "description": "Returns database entries for objects within user-made exhibit for given exhibit_id. Objects within exhibits have all the information for that object returned alongside exhibit-specific information. Information returned as an array of objects on a key of 'objects'.",
     "Queries": [],
     "exampleResponse": {
@@ -291,7 +291,7 @@
     },
     "requestBodyFormat": {}
   },
-  "GET /exhibitobjects/objects/:exhibit_object_id": {
+  "GET /api/exhibitobjects/objects/:exhibit_object_id": {
     "description": "Returns database entries for single object entry within user-made exhibits for given exhibit_object_id. Objects within exhibits have all the information for that object returned alongside their exhibit-specific information. Information returned on a key of 'object'.",
     "Queries": [],
     "exampleResponse": {
@@ -314,7 +314,7 @@
     },
     "requestBodyFormat": {}
   },
-  "POST /exhibitobjects": {
+  "POST /api/exhibitobjects": {
     "description": "Takes a request body to enter a new object into the exhibit_objects table. Requires exhibit_id of exhibit to be added to as well as object_id of object to be added. Responds with new objects entry into exhibit_objects table on a key 'exhibitObject' - does not return all that objects information (only the specific exhibit information)",
     "Queries": [],
     "exampleResponse": {
@@ -330,7 +330,7 @@
       "object_id": 4
     }
   },
-  "PATCH /exhibitobjects/:exhibit_id": {
+  "PATCH /api/exhibitobjects/:exhibit_id": {
     "description": "Takes a request body to patch object positions within a user made exhibit (specified by id in request URL) Requires user_id to match curator_id for given exhibit to verify. POSITION UPDATES IN REQUEST BODY MUST BE GIVEN FOR EVERY OBJECT POSITION WITHIN THE EXHIBIT - if an exhibit has three objects, a position update field is required for each object (even if its position is to remain unchanged). position_updates key requires an object as its value, with keys of each objects exhibit_object_id, their values as their new positions within the exhibit. For example - say an exhibit has two objects - their exhibit_object_ids are 1 and 7. To place id 1 in position 2 and id 7 in position 1, position_updates key would have value {1:2,7:1}. Responds with updated objects array on key updatedExhibitObjects, sorted by their new positions in ascending order.",
     "Queries": [],
     "exampleResponse": {
@@ -364,7 +364,7 @@
       }
     }
   },
-  "DELETE /exhibitobjects/:exhibit_object_id": {
+  "DELETE /api/exhibitobjects/:exhibit_object_id": {
     "description": "Deletes exhibit object entry from user-made exhibit matching given exhibit_object_id in request URL - responds with empty object upon success.",
     "Queries": [],
     "exampleResponse": {},
