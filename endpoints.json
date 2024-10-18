@@ -165,6 +165,14 @@
     },
     "requestBodyFormat": {}
   },
+  "GET /api/objects/:object_id": {
+    "description" : "Returns single object information from given object id, info returned on a key of 'object'",
+    "queries": [],
+    "exampleResponse":{
+      "object": {}
+    },
+    "requestBodyFormat":{}
+  },
   "GET /api/exhibits/": {
     "description": "Returns database entries for ALL usermade exhibits. On a key of 'exhibits' will be an array of objects with information for each exhibit. May have to be paginated in future if amount of user-made exhibits grows large - example imagines there to be only one user made exhibit.",
     "Queries": [],

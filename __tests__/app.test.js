@@ -502,6 +502,39 @@ describe("GET /api/objects", () => {
   });
 });
 
+describe("GET /api/objects/:object_id", () => {
+  test('GET /api/objects/1 gives status 200: sends relevant object on key "object", according to object id in request URL.', () => {
+    return request(app)
+      .get("/api/objects/1")
+      .expect(200)
+      .then(({ body }) => {
+        const object = body.object
+          expect(object).toMatchObject({
+            object_id: 1,
+            title: expect.any(String),
+            culture: expect.any(String),
+            period: expect.any(String),
+            object_begin_date: expect.any(Number),
+            object_end_date: expect.any(Number),
+            medium: expect.any(String),
+            classification: expect.any(String),
+            primary_image: expect.any(String),
+            object_url: expect.any(String),
+            museum_dataset: expect.any(String),
+          });
+        });
+      });
+      test('GET /api/objects/11516516 gives status 404: sends error message: bad request - object_id not recognised.', () => {
+        return request(app)
+          .get("/api/objects/11516516")
+          .expect(404)
+          .then(({ body }) => {
+            expect(body.msg).toEqual('bad request - object_id not recognised')
+            });
+          });
+  });
+
+
 // EXHIBIT REQUESTS
 
 //GET ALL EXHIBITS

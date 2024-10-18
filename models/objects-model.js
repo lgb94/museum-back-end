@@ -95,3 +95,16 @@ exports.fetchAllObjects = (
                 });
         });
 };
+
+exports.fetchObjectById = (id) => {
+        return db.query('SELECT * FROM objects WHERE object_id = $1', [id])
+        .then((result) => {
+            if (result.rows.length === 0){
+                return Promise.reject({
+                    status : 404,
+                    msg : "bad request - object_id not recognised"
+                })
+            }
+            else {return result.rows[0]}
+        })
+    }

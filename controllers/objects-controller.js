@@ -1,4 +1,4 @@
-const { fetchAllObjects } = require(`${__dirname}/../models/objects-model`)
+const { fetchAllObjects, fetchObjectById } = require(`${__dirname}/../models/objects-model`)
 
 exports.getObjects = (req, res, next) => {
     const { 
@@ -36,6 +36,17 @@ exports.getObjects = (req, res, next) => {
     )
     .then((results) => {
         res.status(200).send({results})
+    })
+    .catch((err) => {
+        next(err)
+    })
+}
+
+exports.getObjectById = (req, res, next) => {
+    const id = req.params.object_id
+    fetchObjectById(id)
+    .then((object) => {
+        res.status(200).send({object})
     })
     .catch((err) => {
         next(err)
