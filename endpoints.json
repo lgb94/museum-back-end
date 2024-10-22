@@ -173,7 +173,7 @@
     },
     "requestBodyFormat":{}
   },
-  "GET /api/exhibits/": {
+  "GET /api/exhibits": {
     "description": "Returns database entries for ALL usermade exhibits. On a key of 'exhibits' will be an array of objects with information for each exhibit. May have to be paginated in future if amount of user-made exhibits grows large - example imagines there to be only one user made exhibit.",
     "Queries": [],
     "exampleResponse": {
@@ -290,6 +290,7 @@
           "object_id": 1,
           "title": "Object A",
           "culture": "Greek",
+          "exhibit_object_id": 1,
           "period": "Classical Period",
           "object_begin_date": -200,
           "object_end_date": -100,
@@ -304,6 +305,7 @@
           "object_id": 2,
           "title": "Object B",
           "culture": "Greek",
+          "exhibit_object_id": 2,
           "period": "Classical Period",
           "object_begin_date": -400,
           "object_end_date": -300,

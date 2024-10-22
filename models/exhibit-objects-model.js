@@ -12,7 +12,7 @@ exports.fetchAllExhibitObjects = (id) => {
             })
         }
     return db.query(`
-        SELECT exhibit_objects.object_position, objects.*
+        SELECT exhibit_objects.exhibit_object_id, exhibit_objects.object_position, objects.*
         FROM exhibit_objects
         JOIN objects ON exhibit_objects.object_id = objects.object_id
         WHERE exhibit_objects.exhibit_id = $1

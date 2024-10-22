@@ -81,6 +81,7 @@ exports.fetchAllObjects = (
 
     return db.query(countSqlString, queryValues.slice(0, queryValues.length - 2))
         .then((countResult) => {
+
             const totalRecords = parseInt(countResult.rows[0].count, 10);
             const totalPages = Math.ceil(totalRecords / limit);
             return db.query(sqlString, queryValues)

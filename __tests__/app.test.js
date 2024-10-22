@@ -366,7 +366,7 @@ describe("GET /api/objects", () => {
         );
       });
   });
-  test('GET /api/objects?culture=Roman correctly takes one query, giving a status 200 and sneding back all objects with a museum_dataset of "harvard". Objects are sorted by their object_id in ascending order (default)', () => {
+  test('GET /api/objects?museum_dataset=harvard correctly takes one query, giving a status 200 and sneding back all objects with a musem_dataset of "harvard". Objects are sorted by their object_id in ascending order (default)', () => {
     return request(app)
       .get("/api/objects?museum_dataset=harvard")
       .expect(200)
@@ -823,6 +823,7 @@ describe("GET /api/exhibitobjects/:exhibit_id", () => {
             object_id: expect.any(Number),
             title: expect.any(String),
             culture: expect.any(String),
+            exhibit_object_id: expect.any(Number),
             period: expect.any(String),
             object_begin_date: expect.any(Number),
             object_end_date: expect.any(Number),
