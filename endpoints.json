@@ -337,7 +337,8 @@
         "classification": "Sculpture",
         "primary_image": "https://example.com/imageA.jpg",
         "object_url": "https://example.com/objectA",
-        "museum_dataset": "met"
+        "museum_dataset": "met",
+        "exhibit_title": "Sculpture of the Ancient World"
       }
     },
     "requestBodyFormat": {}

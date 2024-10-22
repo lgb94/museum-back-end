@@ -871,11 +871,14 @@ describe("GET /api/exhibitobjects/objects/:exhibit_object_id", () => {
       .expect(200)
       .then(({ body }) => {
         const object = body.object;
-        expect(object).toMatchObject({
+        expect(object).toEqual({
           object_position: expect.any(Number),
           object_id: expect.any(Number),
           title: expect.any(String),
           culture: expect.any(String),
+          exhibit_id: expect.any(Number),
+          exhibit_object_id: expect.any(Number),
+          exhibit_title: expect.any(String),
           period: expect.any(String),
           object_begin_date: expect.any(Number),
           object_end_date: expect.any(Number),

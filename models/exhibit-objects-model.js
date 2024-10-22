@@ -31,9 +31,10 @@ exports.fetchAllExhibitObjects = (id) => {
 
 exports.fetchExhibitObjectWithExhibitObjectId = (id) => {
     return db.query(`
-        SELECT exhibit_objects.*, objects.*
+        SELECT exhibit_objects.*, objects.*, exhibits.exhibit_id, exhibits.title AS exhibit_title
         FROM exhibit_objects
         JOIN objects ON exhibit_objects.object_id = objects.object_id
+        JOIN exhibits ON exhibit_objects.exhibit_id = exhibits.exhibit_id
         WHERE exhibit_objects.exhibit_object_id = $1;
     `, [id])
     .then((result) => {
