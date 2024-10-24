@@ -57,13 +57,7 @@ exports.fetchExhibitsByUserId = (id) => {
         ORDER BY exhibits.exhibit_id ASC;
     `, [id])
     .then((result) => {
-        if(result.rows.length === 0){
-            return Promise.reject({
-                status : 404,
-                msg : "bad request - no exhibits matching user_id"
-            })
-        }
-        else {return result.rows}
+        return result.rows
     })
 }
 

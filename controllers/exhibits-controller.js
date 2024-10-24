@@ -1,4 +1,5 @@
 const { fetchAllExhibits, fetchExhibitByExhibitId, fetchExhibitsByUserId, postNewExhibit, patchExhibitWithExhibitId, deleteExhibitById } = require(`${__dirname}/../models/exhibits-model`)
+const { fetchUserById } = require(`${__dirname}/../models/users-model`)
 
 //get ALL exhibits
 
@@ -15,7 +16,8 @@ exports.getExhibits = (req, res, next) => {
 
 exports.getExhibitByExhibitId = (req, res, next) => {
     const id = req.params.exhibit_id
-    fetchExhibitByExhibitId(id).then((exhibit) => {
+    fetchExhibitByExhibitId(id)
+    .then((exhibit) => {
         res.status(200).send({exhibit})
     })
     .catch((err) => {
@@ -27,7 +29,11 @@ exports.getExhibitByExhibitId = (req, res, next) => {
 
 exports.getExhibitsByUserId = (req, res, next) => {
     const id = req.params.user_id
-    fetchExhibitsByUserId(id).then((exhibits) => {
+    fetchUserById(id)
+    .then((user) => {
+        return fetchExhibitsByUserId(id)
+    })
+    .then((exhibits) => {
         res.status(200).send({exhibits})
     })
     .catch((err) => {

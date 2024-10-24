@@ -623,23 +623,23 @@ describe("GET /api/exhibits/user/:user_id", () => {
         });
       });
   });
-  test('GET /api/exhibits/user/5 (an invalid user_ID - exists, no exhibits) gives status 404: responds with custom error message on an object, key "msg", value "no exhibits matching user_id" ', () => {
+  test('GET /api/exhibits/user/5 (a user that exists, but has no exhibits) gives status 200: sends back an object with key exhibits, value of an empty array. ', () => {
     return request(app)
       .get("/api/exhibits/user/5")
-      .expect(404)
+      .expect(200)
       .then(({ body }) => {
         expect(body).toEqual({
-          msg: "bad request - no exhibits matching user_id",
-        });
+          exhibits: []
+        })
       });
   });
-  test('GET /api/exhibits/user/15 (an invalid user_ID - doesnt exist) gives status 404: responds with custom error message on an object, key "msg", value "no exhibits matching user_id" ', () => {
+  test('GET /api/exhibits/user/150 (an invalid user_ID - doesnt exist) gives status 404: responds with custom error message on an object, key "msg", value "no exhibits matching user_id" ', () => {
     return request(app)
-      .get("/api/exhibits/user/15")
+      .get("/api/exhibits/user/150")
       .expect(404)
       .then(({ body }) => {
         expect(body).toEqual({
-          msg: "bad request - no exhibits matching user_id",
+          msg: "bad request - user_id not recognised",
         });
       });
   });
