@@ -37,7 +37,7 @@ Running tests via jest in this way will use a test database that is dropped and 
 
 ## IMPORTANT NOTE
 
-To test the database using development data, YOU WILL HAVE TO CREATE A FILE FOR OBJECT DATA WITHIN THE DEVELOPMENT DATA FOLDER - NO DEV DATA FOR THIS FIELD IS INCLUDED IN THIS REPO. This is because I used the object development data to seed my db in the production stage, meaning for objects I used the data collected from the Harvard and Met APIs. Whilst its probably ok, something seems a bit off about re-uploading thousands of entries for mueseum objects to this github repo, so that has been ommited. For your purposes I would suggest making a copy of the test data for objects to use as dev data, or use the data collection functions available in my data collection repo to obtain a set of data for yourself.
+The data collected for the development data (and subsequently the data used to seed the database) was collected using requests which you can see in the data collection repo linked below. I have also linked the API's from which this information came from. I did want to remove the object data from this repo for the sake of not uploading museum data as someone completely unaffiliated with them, but in doing so I completely broke my api (and subsequently my whole site) so you'll see that dev data is in this repo. If someone comes across this and takes issue, do let me know.
 
 Data Collection repo: https://github.com/lgb94/museum-project-data-collection
 
