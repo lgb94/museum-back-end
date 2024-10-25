@@ -41,6 +41,10 @@ To test the database using development data, YOU WILL HAVE TO CREATE A FILE FOR 
 
 Data Collection repo: https://github.com/lgb94/museum-project-data-collection
 
+    - Met API: https://metmuseum.github.io/
+    
+    - Harvard API: https://github.com/harvardartmuseums/api-docs?tab=readme-ov-file
+
 # REQUIREMENTS
 
 You'll need the latest versions of Node.js and Postgres in order for this thing to run properly, at the time of this projects last update. At present (25/10/2024) these are:
